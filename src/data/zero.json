@@ -1,0 +1,12 @@
+[{
+  "name": {
+    "title": "Mr",
+    "first": "Andre",
+    "last": "Kennedy"
+  },
+  "email": "andre.kennedy@example.com",
+  "dob": {
+    "date": "1986-07-29T17:49:25.115Z",
+    "age": 34
+  }
+}]

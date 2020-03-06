@@ -1,0 +1,45 @@
+{
+  "results": [{
+      "name": {
+        "title": "Mr",
+        "first": "Andre",
+        "last": "Kennedy"
+      },
+      "email": "andre.kennedy@example.com",
+      "dob": {
+        "date": "1986-07-29T17:49:25.115Z",
+        "age": 34
+      }
+    },
+    {
+      "name": {
+        "title": "Mr",
+        "first": "Franklin",
+        "last": "Harrison"
+      },
+      "email": "franklin.harrison@example.com",
+      "dob": {
+        "date": "1976-01-15T14:34:56.500Z",
+        "age": 44
+      }
+    },
+    {
+      "name": {
+        "title": "Monsieur",
+        "first": "Florin",
+        "last": "Louis"
+      },
+      "email": "florin.louis@example.com",
+      "dob": {
+        "date": "1966-05-25T05:08:12.161Z",
+        "age": 54
+      }
+    }
+  ],
+  "info": {
+    "seed": "10a4168dfcaf6d71",
+    "results": 3,
+    "page": 1,
+    "version": "1.3"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "results": [{
+      "gender": "male",
+      "name": {
+        "title": "Mr",
+        "first": "Diégo",
+        "last": "Kemerink"
+      },
+      "email": "diego.kemerink@example.com",
+      "dob": {
+        "date": "1957-03-09T19:28:39.613Z",
+        "age": 63
+      },
+      "phone": "(832)-051-9143",
+      "id": {
+        "name": "BSN",
+        "value": "74452172"
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/men/72.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/72.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/72.jpg"
+      },
+      "nat": "NL"
+    },
+    {
+      "gender": "male",
+      "name": {
+        "title": "Monsieur",
+        "first": "Besim",
+        "last": "Lopez"
+      },
+      "email": "besim.lopez@example.com",
+      "dob": {
+        "date": "1965-08-30T10:16:30.007Z",
+        "age": 55
+      },
+      "phone": "078 143 80 42",
+      "id": {
+        "name": "AVS",
+        "value": "756.5370.2504.64"
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/men/97.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/97.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/97.jpg"
+      },
+      "nat": "CH"
+    },
+    {
+      "gender": "female",
+      "name": {
+        "title": "Ms",
+        "first": "Jessica",
+        "last": "Burton"
+      },
+      "email": "jessica.burton@example.com",
+      "dob": {
+        "date": "1964-04-03T17:35:04.116Z",
+        "age": 56
+      },
+      "phone": "015396 21084",
+      "id": {
+        "name": "NINO",
+        "value": "XB 07 19 91 D"
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/92.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/92.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/92.jpg"
+      },
+      "nat": "GB"
+    }
+  ],
+  "info": {
+    "seed": "7a01e8dd8be78996",
+    "results": 3,
+    "page": 1,
+    "version": "1.3"
+  }
+}
