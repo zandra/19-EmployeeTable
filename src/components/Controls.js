@@ -49,7 +49,7 @@ export default function Controls(){
 
   
   // ## Nationality Filter 
-  const [nat, setNat] = useState("");
+  const [nat, setNat] = useState({});
   // Object for Select, 
   const natOpts = [
     { value: "AU", label: "Australia" },
@@ -61,14 +61,9 @@ export default function Controls(){
     { value: "US", label: "United States"}
   ];
 
-  const handleNatSelect = (selectedOption) => {
-    console.log(selectedOption);
-    // setNat( {selectedOption} );
-  }
-
   function filterNationality(value) {
     // if no data return users
-    const filterNat = workingList.filter(u => u.nat === value);
+    const filterNat = workingList.filter(emp => emp.nat === value);
     setWorkingList(filterNat);
   }
 
@@ -98,13 +93,10 @@ export default function Controls(){
               <InputGroup.Text id="inputGroup-sizing-default">Location</InputGroup.Text>
             </InputGroup.Prepend>
             <Select
-              // onChange={}
-              value={select}
-              onChange={handleNatSelect}
+              onChange={setNat}
               options={natOpts}
-              id="natInput"
-              aria-label="Default"
-              aria-describedby="inputGroup-sizing-default"
+              placeholder="Select country"
+              id="natSelect"
             />
         </InputGroup>
           <Button className="button" onClick={() => filterNationality("FR")}>Filter</Button>
