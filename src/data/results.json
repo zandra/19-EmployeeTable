@@ -1,81 +1,191 @@
-{
-  "results": [{
-      "gender": "male",
-      "name": {
-        "title": "Mr",
-        "first": "Diégo",
-        "last": "Kemerink"
-      },
-      "email": "diego.kemerink@example.com",
-      "dob": {
-        "date": "1957-03-09T19:28:39.613Z",
-        "age": 63
-      },
-      "phone": "(832)-051-9143",
-      "id": {
-        "name": "BSN",
-        "value": "74452172"
-      },
-      "picture": {
-        "large": "https://randomuser.me/api/portraits/men/72.jpg",
-        "medium": "https://randomuser.me/api/portraits/med/men/72.jpg",
-        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/72.jpg"
-      },
-      "nat": "NL"
-    },
-    {
-      "gender": "male",
-      "name": {
-        "title": "Monsieur",
-        "first": "Besim",
-        "last": "Lopez"
-      },
-      "email": "besim.lopez@example.com",
-      "dob": {
-        "date": "1965-08-30T10:16:30.007Z",
-        "age": 55
-      },
-      "phone": "078 143 80 42",
-      "id": {
-        "name": "AVS",
-        "value": "756.5370.2504.64"
-      },
-      "picture": {
-        "large": "https://randomuser.me/api/portraits/men/97.jpg",
-        "medium": "https://randomuser.me/api/portraits/med/men/97.jpg",
-        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/97.jpg"
-      },
-      "nat": "CH"
-    },
-    {
-      "gender": "female",
-      "name": {
-        "title": "Ms",
-        "first": "Jessica",
-        "last": "Burton"
-      },
-      "email": "jessica.burton@example.com",
-      "dob": {
-        "date": "1964-04-03T17:35:04.116Z",
-        "age": 56
-      },
-      "phone": "015396 21084",
-      "id": {
-        "name": "NINO",
-        "value": "XB 07 19 91 D"
-      },
-      "picture": {
-        "large": "https://randomuser.me/api/portraits/women/92.jpg",
-        "medium": "https://randomuser.me/api/portraits/med/women/92.jpg",
-        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/92.jpg"
-      },
-      "nat": "GB"
-    }
-  ],
-  "info": {
-    "seed": "7a01e8dd8be78996",
-    "results": 3,
-    "page": 1,
-    "version": "1.3"
-  }
-}
+ [{
+     "id": 1,
+     "name": {
+       "title": "Miss",
+       "first": "Lillian",
+       "last": "Fletcher"
+     },
+     "email": "lillian.fletcher@example.com",
+     "dob": {
+       "date": "1974-10-24T12:35:50.805Z",
+       "age": 46
+     },
+     "picture": {
+       "large": "https://randomuser.me/api/portraits/women/79.jpg",
+       "medium": "https://randomuser.me/api/portraits/med/women/79.jpg",
+       "thumbnail": "https://randomuser.me/api/portraits/thumb/women/79.jpg"
+     },
+     "nat": "GB"
+   },
+   {
+     "id": 2,
+     "name": {
+       "title": "Mrs",
+       "first": "Emily",
+       "last": "Lord"
+     },
+     "email": "emily.lord@example.com",
+     "dob": {
+       "date": "1974-08-29T14:30:03.123Z",
+       "age": 46
+     },
+     "picture": {
+       "large": "https://randomuser.me/api/portraits/women/43.jpg",
+       "medium": "https://randomuser.me/api/portraits/med/women/43.jpg",
+       "thumbnail": "https://randomuser.me/api/portraits/thumb/women/43.jpg"
+     },
+     "nat": "GB"
+   },
+   {
+     "id": 3,
+     "name": {
+       "title": "Mr",
+       "first": "Enrique",
+       "last": "Weaver"
+     },
+     "email": "enrique.weaver@example.com",
+     "dob": {
+       "date": "1945-05-07T05:53:59.609Z",
+       "age": 75
+     },
+     "picture": {
+       "large": "https://randomuser.me/api/portraits/men/81.jpg",
+       "medium": "https://randomuser.me/api/portraits/med/men/81.jpg",
+       "thumbnail": "https://randomuser.me/api/portraits/thumb/men/81.jpg"
+     },
+     "nat": "GB"
+   },
+   {
+     "id": 4,
+     "name": {
+       "title": "Miss",
+       "first": "Gloria",
+       "last": "Muñoz"
+     },
+     "email": "gloria.munoz@example.com",
+     "dob": {
+       "date": "1956-05-11T14:28:32.779Z",
+       "age": 64
+     },
+     "picture": {
+       "large": "https://randomuser.me/api/portraits/women/12.jpg",
+       "medium": "https://randomuser.me/api/portraits/med/women/12.jpg",
+       "thumbnail": "https://randomuser.me/api/portraits/thumb/women/12.jpg"
+     },
+     "nat": "ES"
+   },
+   {
+     "id": 5,
+     "name": {
+       "title": "Mr",
+       "first": "William",
+       "last": "George"
+     },
+     "email": "william.george@example.com",
+     "dob": {
+       "date": "1991-10-28T19:40:12.437Z",
+       "age": 29
+     },
+     "picture": {
+       "large": "https://randomuser.me/api/portraits/men/89.jpg",
+       "medium": "https://randomuser.me/api/portraits/med/men/89.jpg",
+       "thumbnail": "https://randomuser.me/api/portraits/thumb/men/89.jpg"
+     },
+     "nat": "AU"
+   },
+   {
+     "id": 6,
+     "name": {
+       "title": "Miss",
+       "first": "Angelica",
+       "last": "Grunwald"
+     },
+     "email": "angelica.grunwald@example.com",
+     "dob": {
+       "date": "1967-12-15T19:38:33.732Z",
+       "age": 53
+     },
+     "picture": {
+       "large": "https://randomuser.me/api/portraits/women/49.jpg",
+       "medium": "https://randomuser.me/api/portraits/med/women/49.jpg",
+       "thumbnail": "https://randomuser.me/api/portraits/thumb/women/49.jpg"
+     },
+     "nat": "DE"
+   },
+   {
+     "id": 7,
+     "name": {
+       "title": "Ms",
+       "first": "Anna",
+       "last": "Gordon"
+     },
+     "email": "anna.gordon@example.com",
+     "dob": {
+       "date": "1985-05-27T19:47:54.679Z",
+       "age": 35
+     },
+     "picture": {
+       "large": "https://randomuser.me/api/portraits/women/9.jpg",
+       "medium": "https://randomuser.me/api/portraits/med/women/9.jpg",
+       "thumbnail": "https://randomuser.me/api/portraits/thumb/women/9.jpg"
+     },
+     "nat": "GB"
+   },
+   {
+     "id": 8,
+     "name": {
+       "title": "Mrs",
+       "first": "Angelique",
+       "last": "Michael"
+     },
+     "email": "angelique.michael@example.com",
+     "dob": {
+       "date": "1997-09-05T06:59:15.980Z",
+       "age": 23
+     },
+     "picture": {
+       "large": "https://randomuser.me/api/portraits/women/37.jpg",
+       "medium": "https://randomuser.me/api/portraits/med/women/37.jpg",
+       "thumbnail": "https://randomuser.me/api/portraits/thumb/women/37.jpg"
+     },
+     "nat": "DE"
+   },
+   {
+     "id": 9,
+     "name": {
+       "title": "Mr",
+       "first": "Johan",
+       "last": "Nicolas"
+     },
+     "email": "johan.nicolas@example.com",
+     "dob": {
+       "date": "1951-08-20T14:57:30.951Z",
+       "age": 69
+     },
+     "picture": {
+       "large": "https://randomuser.me/api/portraits/men/46.jpg",
+       "medium": "https://randomuser.me/api/portraits/med/men/46.jpg",
+       "thumbnail": "https://randomuser.me/api/portraits/thumb/men/46.jpg"
+     },
+     "nat": "FR"
+   },
+   {
+     "id": 10,
+     "name": {
+       "title": "Miss",
+       "first": "Julie",
+       "last": "Morel"
+     },
+     "email": "julie.morel@example.com",
+     "dob": {
+       "date": "1967-03-13T03:02:27.845Z",
+       "age": 53
+     },
+     "picture": {
+       "large": "https://randomuser.me/api/portraits/women/57.jpg",
+       "medium": "https://randomuser.me/api/portraits/med/women/57.jpg",
+       "thumbnail": "https://randomuser.me/api/portraits/thumb/women/57.jpg"
+     },
+     "nat": "FR"
+   }
+ ]

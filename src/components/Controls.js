@@ -1,59 +1,125 @@
 import React, {useState, useEffect} from "react";
-import EmployeeTable from "./Table";
 import axios from "axios";
-import employees from '../data/resultsShort.json';
+import moment from "moment";
+import "./Controls.css";
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import 'react-day-picker/lib/style.css';
+import Select from 'react-select';
+import Hero from "./Hero";
+import EmployeeTable from "./Table";
+import InputGroup from'react-bootstrap/InputGroup';
+import FormControl from'react-bootstrap/FormControl';
+import Button from 'react-bootstrap/Button'
+import json from '../data/results.json';
+const url = "https://randomuser.me/api/?results=10&inc=name,email,dob,nat&nat=AU,DE,ES,FR,GB,NZ,US";
 
-// Create function to set id for each user object
-// For now id is on results array index
-// add id into the users object?
-
-// Also maybe need to break down the object here ?
-
+// Question: should i break down the user object?
 export default function Controls(){
 
-  const url = "https://randomuser.me/api/?results==3?inc=id,picture,name,email,dob,phone,gender,nat";
-  const shortRes = "https://randomuser.me/api/?results==3?inc=id,name,email,dob";
-  
-  
-  
-  const [users, setUsers] = useState(employees.results);
-  const id = users.map(user => users.indexOf(user));
-  
-  console.log(users);
-  
-  // Table head DOB -> Sort Descending
-  const orderByDobOldest= () => {
-    setUsers(users.sort((a, b) => a.dob.date - b.dob.date));
-  }
-  
-  
-  
-  // AXIOS call to get / set Data
-  const [data, setData] = useState({
-    id: "",
-    name: "",
-    email: "",
-    dob: "",
-  });
+  // Set masterList : axios call
+  // Set workingList : display 
+  const [masterList, setMasterList] = useState([]);
+  const [workingList, setWorkingList] = useState(json);
+
+  // ###### AXIOS call => setMasterList
+  // useEffect(() => {
+  //   axios.get(url)
+  //   .then((res) => {
+  //     const results = res.data.results;
+  //     // Give each object an ID
+  //     const updatedResults = results.map(obj => ({id: (results.indexOf(obj)+1), ...obj}));
+  //     setMasterList(updatedResults);
+  //     setWorkingList(masterList);
+  //   })
+  //   .catch(err => console.log(err))
+  // }, []);
+  // ########
+
+  // ####### Filter and Search functions
+  // ## DOB Filter
+  const [dobLow, setDobLow] = useState("");
+  const [dobHigh, setDobHigh] = useState("");
+
+  const dateformat = (d) => moment(d).format('L');
+
   useEffect(() => {
-    axios.get(shortRes)
-    .then((res) => {
-      const emp = ([...res]);
-      console.log(emp);
-      const id = emp.map(e => res.indexOf(e));
-      // setData(res)
-      console.log(id);
-    })
-    .catch(err => console.log(err))
-  }, []);
+    const filterDobLow = workingList.filter(emp => dateformat(emp.dob.date) >= dateformat(dobLow));
+    setWorkingList(filterDobLow);
+  }, [dobLow]);
+
+  
+  // ## Nationality Filter 
+  const [nat, setNat] = useState("");
+  // Object for Select, 
+  const natOpts = [
+    { value: "AU", label: "Australia" },
+    { value: "DE", label: "Germany"},
+    { value: "ES", label: "Spain"},
+    { value: "FR", label: "France"},
+    { value: "GB", label: "Great Britain"},
+    { value: "NZ", label: "New Zealand"},
+    { value: "US", label: "United States"}
+  ];
+
+  const handleNatSelect = (selectedOption) => {
+    console.log(selectedOption);
+    // setNat( {selectedOption} );
+  }
+
+  function filterNationality(value) {
+    // if no data return users
+    const filterNat = workingList.filter(u => u.nat === value);
+    setWorkingList(filterNat);
+  }
+
+  // ## Reset Filter
+  // Set workingList back to masterList
+  // Clear all inputs
 
   return (
-    <div className="controls">
-      <h1>Employee Table</h1>
-      <EmployeeTable 
-      users={users}
-      id={id}
+    <div className="page">
+      <Hero />
+      <div className="controls">
+      <InputGroup className="mb-3" id="control-dob-filter">
+        <InputGroup.Prepend>
+          <InputGroup.Text>DOB</InputGroup.Text>
+        </InputGroup.Prepend>
+      <DayPickerInput 
+        id="dobLow" 
+        onDayChange={day => setDobLow(day)} 
       />
-    </div>
+      <DayPickerInput id="dobHigh" onDayChange={day => setDobHigh(day)} />
+
+     
+      </InputGroup>
+        {/* Nationality Filter  */}
+        <InputGroup className="mb-3" id="natFilter">
+          <InputGroup.Prepend>
+              <InputGroup.Text id="inputGroup-sizing-default">Location</InputGroup.Text>
+            </InputGroup.Prepend>
+            <Select
+              // onChange={}
+              value={select}
+              onChange={handleNatSelect}
+              options={natOpts}
+              id="natInput"
+              aria-label="Default"
+              aria-describedby="inputGroup-sizing-default"
+            />
+        </InputGroup>
+          <Button className="button" onClick={() => filterNationality("FR")}>Filter</Button>
+          <Button className="button" onClick={() => setWorkingList(json)}>Reset Filters</Button>
+      </div>
+      {/* Table */}
+      <EmployeeTable 
+      users={workingList}
+      />
+      
+      <div>
+        <h5>Test Me</h5>
+        <div>{JSON.stringify(workingList)}</div>
+      </div>
+    
+      </div>
   )
 }
