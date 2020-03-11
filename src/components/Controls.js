@@ -2,14 +2,13 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import moment from "moment";
 import "./Controls.css";
+// External React components
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import Select from 'react-select';
-import Hero from "./Hero";
 import EmployeeTable from "./Table";
-import InputGroup from'react-bootstrap/InputGroup';
-import FormControl from'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button'
+// React Bootstrap components
+import { Container, Col, Row, InputGroup, FormControl, Button } from 'react-bootstrap';
 import json from '../data/results.json';
 const url = "https://randomuser.me/api/?results=10&inc=name,email,dob,nat&nat=AU,DE,ES,FR,GB,NZ,US";
 
@@ -37,12 +36,14 @@ export default function Controls(){
 
   // ####### Filter and Search functions
   // ## DOB Filter
-  const [dobLow, setDobLow] = useState("");
-  const [dobHigh, setDobHigh] = useState("");
+  const [dobLow, setDobLow] = useState(null);
+  const [dobHigh, setDobHigh] = useState(null);
 
   const dateformat = (d) => moment(d).format('L');
 
   useEffect(() => {
+    if (!dobLow) return;
+    console.log(dobLow);
     const filterDobLow = workingList.filter(emp => dateformat(emp.dob.date) >= dateformat(dobLow));
     setWorkingList(filterDobLow);
   }, [dobLow]);
@@ -72,42 +73,48 @@ export default function Controls(){
   // Clear all inputs
 
   return (
-    <div className="page">
-      <Hero />
-      <div className="controls">
-      <InputGroup className="mb-3" id="control-dob-filter">
-        <InputGroup.Prepend>
-          <InputGroup.Text>DOB</InputGroup.Text>
-        </InputGroup.Prepend>
-      <DayPickerInput 
-        id="dobLow" 
-        onDayChange={day => setDobLow(day)} 
-      />
-      <DayPickerInput id="dobHigh" onDayChange={day => setDobHigh(day)} />
+      <div className="control">
+        <Container fluid="true">
+          <Row className="align-items-center control-filters">
+            <Col md={2}><h5>Filters</h5></Col>
 
-     
-      </InputGroup>
-        {/* Nationality Filter  */}
-        <InputGroup className="mb-3" id="natFilter">
-          <InputGroup.Prepend>
-              <InputGroup.Text id="inputGroup-sizing-default">Location</InputGroup.Text>
-            </InputGroup.Prepend>
-            <Select
-              onChange={setNat}
-              options={natOpts}
-              placeholder="Select country"
-              id="natSelect"
-            />
-        </InputGroup>
-          <Button className="button" onClick={() => filterNationality("FR")}>Filter</Button>
-          <Button className="button" onClick={() => setWorkingList(json)}>Reset Filters</Button>
-      </div>
+            {/* DOB Filters  */}
+            <Col md="auto">
+              <InputGroup className="mb-3" id="control-dob-filter">
+                <InputGroup.Prepend>
+                  <InputGroup.Text>DOB</InputGroup.Text>
+                </InputGroup.Prepend>
+                <DayPickerInput 
+                  id="dobLow" 
+                  onDayChange={day => setDobLow(day)} 
+                />
+                <DayPickerInput id="dobHigh" onDayChange={day => setDobHigh(day)} />
+              </InputGroup>
+            </Col>
+            <Col>
+              {/* Nationality Filter  */}
+              <InputGroup className="mb-3" id="natFilter">
+                <InputGroup.Prepend>
+                  <InputGroup.Text id="inputGroup-sizing-default">Location</InputGroup.Text>
+                </InputGroup.Prepend>
+                  <Select
+                    onChange={setNat}
+                    options={natOpts}
+                    placeholder="Select country"
+                    id="natSelect"
+                  />
+              </InputGroup>
+            </Col>
+            <Col>
+              <Button className="button" onClick={() => setWorkingList(json)}>Reset Filters</Button>
+            </Col>
+        </Row>
+        </Container>
       {/* Table */}
       <EmployeeTable 
       users={workingList}
       />
-      
-      <div>
+      <div className="test-data">
         <h5>Test Me</h5>
         <div>{JSON.stringify(workingList)}</div>
       </div>

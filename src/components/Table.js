@@ -2,47 +2,36 @@ import React, {useState} from "react";
 import "./Table.css";
 import Table from'react-bootstrap/Table';
 import moment from "moment";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-// Table Head -> add click event to th to order by
-// tr needs id, grab <tr> when ordering
 
 export default function EmployeeTable(props) {
 
-  const [sort, setSort] = useState(null);
+  // From https://www.florin-pop.com/blog/2019/07/sort-table-data-with-react/
+  const [sort, setSort] = useState('default');
 
-  // const sortTypes(col) = {
-  //   up: {
-  //     class: 'sort-up',
-  //     fn: (a, b) => a.col - b.col
-  //   },
-  //   down: {
-  //     class: 'sort-down',
-  //     fn: (a, b) => b.col - a.col
-  //   },
-  //   default: {
-  //     class: 'sort',
-  //     fn: (a, b) => a
-  //   }
-  // };
+  const sortTypes = {
+    up: {
+      class: 'sort-up',
+      fn: (a, b) => a.dob.age - b.dob.age
+    },
+    down: {
+      class: 'sort-down',
+      fn: (a, b) => b.dob.age - a.dob.age
+    },
+    default: {
+      class: 'sort',
+      fn: (a, b) => a
+    }
+  };
 
-  // const sortChange() => {
-  //   const currentSort = sort;
-  //   let nextSort;
-  //   if(currentSort === 'down') nextSort = 'up';
+  const onSortChange = () => {
+    if (sort === 'down') setSort('up');
+    else if (sort === 'up') setSort('default');
+    else if (sort === 'default') setSort('down');
+  };
 
-  // }
-
-  // Table head DOB -> Sort Descending
-  const orderByDobOldest= () => {
-  }
-
-  // Table head DOB -> Sort Descending
-  const orderByAge= () => {
-  }
-    
-  orderByDobOldest();
-
-
+  console.log(`${sortTypes[sort].class}`);
   return (
   <Table striped bordered>
     <thead>
@@ -51,16 +40,20 @@ export default function EmployeeTable(props) {
         <th>Last Name</th>
         <th>Email</th>
         <th>DOB
-          <button>
-
+          
+        </th>
+        <th>Age
+          <button className="sort" onClick={onSortChange}>
+            <FontAwesomeIcon icon={`${sortTypes[sort].class}`} />
           </button>
         </th>
-        <th>Age</th>
         <th>Branch Location</th>
       </tr>
     </thead>
     <tbody>
-    {props.users.map(user => (
+    {[...props.users]
+    .sort(sortTypes[sort].fn)
+    .map(user => (
       <tr key={user.id}>
         <td >{user.name.first}</td>
         <td >{user.name.last}</td>

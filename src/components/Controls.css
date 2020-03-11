@@ -1,9 +1,9 @@
-.page {
+.control {
   margin: 0 30px;
 }
 
-.controls {
-  margin-top: 50px;
+.control-filters {
+  border: 1px solid #191970;
 }
 
 #natSelect {
