@@ -2,15 +2,15 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import moment from "moment";
 import "./Controls.css";
+import EmployeeTable from "./Table";
 // External React components
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import Select from 'react-select';
-import EmployeeTable from "./Table";
 // React Bootstrap components
 import { Container, Col, Row, InputGroup, FormControl, Button } from 'react-bootstrap';
-import json from '../data/results.json';
-const url = "https://randomuser.me/api/?results=10&inc=name,email,dob,nat&nat=AU,DE,ES,FR,GB,NZ,US";
+// API url
+const url = "https://randomuser.me/api/?results=100&inc=picture,name,email,dob,nat&nat=AU,DE,ES,FR,GB,NZ,US";
 
 // Question: should i break down the user object?
 export default function Controls(){
@@ -18,21 +18,32 @@ export default function Controls(){
   // Set masterList : axios call
   // Set workingList : display 
   const [masterList, setMasterList] = useState([]);
-  const [workingList, setWorkingList] = useState(json);
-
+  const [workingList, setWorkingList] = useState([]);
+  
   // ###### AXIOS call => setMasterList
-  // useEffect(() => {
-  //   axios.get(url)
-  //   .then((res) => {
-  //     const results = res.data.results;
-  //     // Give each object an ID
-  //     const updatedResults = results.map(obj => ({id: (results.indexOf(obj)+1), ...obj}));
-  //     setMasterList(updatedResults);
-  //     setWorkingList(masterList);
-  //   })
-  //   .catch(err => console.log(err))
-  // }, []);
+  useEffect(() => {
+     axios.get(url)
+    .then((res) => {
+      const results = res.data.results;
+      // Give each object an ID
+      const updatedResults = results.map(obj => ({id: (results.indexOf(obj)+1), ...obj}));
+      setMasterList(updatedResults);
+      })
+    .catch(err => console.log(err));
+  }, []);
+
+  // set working list 
+  useEffect(() => {
+    setWorkingList(masterList);
+  }, [masterList])
   // ########
+
+    // ## Reset Filter
+    const resetFilter = () => {
+      setWorkingList(masterList);
+    }
+    // Set workingList back to masterList
+    // Clear all inputs
 
   // ####### Filter and Search functions
   // ## DOB Filter
@@ -41,12 +52,11 @@ export default function Controls(){
 
   const dateformat = (d) => moment(d).format('L');
 
-  useEffect(() => {
-    if (!dobLow) return;
-    console.log(dobLow);
-    const filterDobLow = workingList.filter(emp => dateformat(emp.dob.date) >= dateformat(dobLow));
-    setWorkingList(filterDobLow);
-  }, [dobLow]);
+  // useEffect(() => {
+  //   if (!dobLow) return;
+  //   const filterDobLow = workingList.filter(emp => dateformat(emp.dob.date) >= dateformat(dobLow));
+  //   setWorkingList(filterDobLow);
+  // }, [dobLow]);
 
   
   // ## Nationality Filter 
@@ -62,15 +72,12 @@ export default function Controls(){
     { value: "US", label: "United States"}
   ];
 
-  function filterNationality(value) {
-    // if no data return users
-    const filterNat = workingList.filter(emp => emp.nat === value);
+  useEffect(() => {
+    if (Object.entries(nat).length === 0) return;
+    const filterNat = workingList.filter(emp => emp.nat === nat.value);
     setWorkingList(filterNat);
-  }
+  }, [nat]);
 
-  // ## Reset Filter
-  // Set workingList back to masterList
-  // Clear all inputs
 
   return (
       <div className="control">
@@ -79,8 +86,8 @@ export default function Controls(){
             <Col md={2}><h5>Filters</h5></Col>
 
             {/* DOB Filters  */}
-            <Col md="auto">
-              <InputGroup className="mb-3" id="control-dob-filter">
+            {/* <Col md="auto">
+              <InputGroup className="mb-3 mt-3 ctrl-filter" id="ctrlDobFilter">
                 <InputGroup.Prepend>
                   <InputGroup.Text>DOB</InputGroup.Text>
                 </InputGroup.Prepend>
@@ -88,12 +95,14 @@ export default function Controls(){
                   id="dobLow" 
                   onDayChange={day => setDobLow(day)} 
                 />
-                <DayPickerInput id="dobHigh" onDayChange={day => setDobHigh(day)} />
+                <DayPickerInput 
+                  id="dobHigh" 
+                  onDayChange={day => setDobHigh(day)} />
               </InputGroup>
-            </Col>
+            </Col> */}
             <Col>
               {/* Nationality Filter  */}
-              <InputGroup className="mb-3" id="natFilter">
+              <InputGroup className="mb-3 mt-3 ctrl-filter" id="ctrlNatFilter">
                 <InputGroup.Prepend>
                   <InputGroup.Text id="inputGroup-sizing-default">Location</InputGroup.Text>
                 </InputGroup.Prepend>
@@ -106,7 +115,7 @@ export default function Controls(){
               </InputGroup>
             </Col>
             <Col>
-              <Button className="button" onClick={() => setWorkingList(json)}>Reset Filters</Button>
+              <Button className="button" onClick={() => resetFilter()}>Reset Filters</Button>
             </Col>
         </Row>
         </Container>
@@ -114,11 +123,6 @@ export default function Controls(){
       <EmployeeTable 
       users={workingList}
       />
-      <div className="test-data">
-        <h5>Test Me</h5>
-        <div>{JSON.stringify(workingList)}</div>
-      </div>
-    
-      </div>
+    </div>
   )
 }

@@ -8,7 +8,6 @@ import { faSortUp, faSortDown, faSort, faCoffee } from '@fortawesome/free-solid-
 
 library.add(faSortUp, faSortDown, faSort, faCoffee);
 
-
 function App() {
   return (
     <div className="App">
